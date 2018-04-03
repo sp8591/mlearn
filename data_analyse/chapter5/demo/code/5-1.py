@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
+from sklearn.manifold import TSNE
 from scipy.interpolate import lagrange
 reload(sys)
 sys.setdefaultencoding('utf-8')

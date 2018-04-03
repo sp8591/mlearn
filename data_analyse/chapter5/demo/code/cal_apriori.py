@@ -7,7 +7,7 @@ from apriori import * #导入自行编写的apriori函数
 inputfile = '../data/menu_orders.xls'
 outputfile = '../tmp/apriori_rules.xls' #结果文件
 data = pd.read_excel(inputfile, header = None)
-
+print(data)
 print(u'\n转换原始数据至0-1矩阵...')
 ct = lambda x : pd.Series(1, index = x[pd.notnull(x)]) #转换0-1矩阵的过渡函数
 b = map(ct, data.as_matrix()) #用map方式执行
