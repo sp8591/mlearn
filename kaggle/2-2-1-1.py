@@ -26,3 +26,18 @@ y_predict = lsvc.predict(x_test)
 lsvc.score(x_test, y_test)
 from sklearn.metrics import classification_report
 print classification_report(y_test, y_predict, labels=digits.target_names.astype(str))
+
+from sklearn.datasets import load_digits
+from sklearn.cluster import KMeans
+data = load_digits()
+x_train, x_test, y_train, y_test = train_test_split(
+    data.data,
+    data.target,
+    random_state=33,
+    test_size=0.25
+)
+kmeans = KMeans(n_clusters=10)
+kmeans.fit(x_train)
+y_pred = kmeans.predict(x_test)
+print y_test
+print y_pred
