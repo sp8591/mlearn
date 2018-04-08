@@ -20,7 +20,9 @@ print data.head()
 
 x = data[['pclass', 'age', 'sex']]
 y = data[['survived']]
-
+x = data.drop(['row.names', 'name', 'survived'], axis=1)
+x['age'].fillna(x['age'].mean(), inplace=True)
+x.fillna('UNKNOW', inplace=True)
 print x.info()
 print x
 x['age'].fillna(x['age'].mean(), inplace=True)
@@ -70,5 +72,16 @@ x_test_fs = fs.transform(x_test)
 print gbc.score(x_test_fs, y_test)
 
 from sklearn.cross_validation import cross_val_score
-percentiles = range(1, 100, 2)
+percentiles = range(1, 4, 2)
 results = []
+from sklearn.tree import DecisionTreeClassifier
+dt = DecisionTreeClassifier(criterion='entropy')
+for i in percentiles:
+    fs = feature_selection.SelectPercentile(feature_selection.chi2,
+                                            percentile=i)
+    x_train_fs = fs.fit_transform(x_train, y_train)
+    scores = cross_val_score(dt, x_train_fs, y_train, cv=5)
+    results = np.append(results, scores.mean())
+print results
+opt = np.where(results == results.max())[0]
+print percentiles[opt]
