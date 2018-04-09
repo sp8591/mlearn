@@ -14,3 +14,30 @@
     plt.plot([-1,2,-5,3])
     plt.title(u'中文',fontproperties=myfont)
     plt.show()
+
+以下方法是在当前的分支下新建一个分支，然后把之前分支删除，接着把新建的分支重命名为原分支名称，最后把分支强制推送到远程
+
+1.Checkout
+
+   git checkout --orphan latest_branch
+
+2. Add all the files
+
+   git add -A
+
+3. Commit the changes
+
+   git commit -am "commit message"
+
+
+4. Delete the branch
+
+   git branch -D master
+
+5.Rename the current branch to master
+
+   git branch -m master
+
+6.Finally, force update your repository
+
+   git push -f origin master
