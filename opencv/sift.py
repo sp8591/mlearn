@@ -14,7 +14,7 @@ def process_image(imagename,resultname,params="--edge-thresh 10 --peak-thresh 5"
         im.save('tmp.pgm')
         imagename = 'tmp.pgm'
 
-    cmmd = str("/root/ss/bb/doc/ml/python计算机视觉/code/vlfeat-0.9.21/bin/glnxa64/sift "+imagename+" --output="+resultname+
+    cmmd = str("/root/ss/ml/vlfeat-0.9.20/bin/glnxa64/sift "+imagename+" --output="+resultname+
                 " "+params)
     os.system(cmmd)
     print 'processed', imagename, 'to', resultname
